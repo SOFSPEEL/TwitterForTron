@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:9:1-50:12
+ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:9:1-55:12
 	xmlns:android
 		ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:9:11-69
 	package
@@ -22,7 +22,7 @@ ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/
 	android:name
 		ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:13:22-76
 application
-ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:15:5-48:19
+ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:15:5-53:19
 MERGED from [com.android.support:appcompat-v7:22.2.0] /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:22.2.0] /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/AndroidManifest.xml:19:5-20
@@ -74,7 +74,9 @@ MERGED from [com.google.android.gms:play-services-basement:8.1.0] /Users/steve.f
 	android:value
 		ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:43:13-66
 activity#com.parse.starter.Views.TwitterListActivity
-ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:45:9-47:71
+ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:45:9-52:20
+	android:windowSoftInputMode
+		ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:48:13-54
 	android:label
 		ADDED from /Users/steve.fiedelberg/Downloads/TwitterForTron/ParseStarterProject/src/main/AndroidManifest.xml:47:13-59
 	android:name

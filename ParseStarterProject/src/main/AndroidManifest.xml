@@ -44,7 +44,12 @@
 
         <activity
             android:name=".Views.TwitterListActivity"
-            android:label="@string/title_activity_twitter"></activity>
+            android:label="@string/title_activity_twitter"
+            android:windowSoftInputMode="stateHidden"
+            >
+
+
+        </activity>
     </application>
 
 </manifest>

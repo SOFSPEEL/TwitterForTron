@@ -51,7 +51,9 @@
 
         <activity
             android:name="com.parse.starter.Views.TwitterListActivity"
-            android:label="@string/title_activity_twitter" />
+            android:label="@string/title_activity_twitter"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
     </application>
 
 </manifest>
