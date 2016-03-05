@@ -8,6 +8,7 @@
  */
 package com.parse.starter.Views;
 
+import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,12 +27,13 @@ import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
 import com.parse.starter.R;
+import com.parse.starter.StarterApplication;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
+public class LoginActivity extends TwitterServiceActivity implements View.OnClickListener {
 
   @Bind(R.id.userName) EditText userName;
   @Bind(R.id.password) EditText password;
@@ -50,13 +52,11 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     ButterKnife.bind(this, this);
     ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
-
     // ATTENTION: This was auto-generated to implement the App Indexing API.
     // See https://g.co/AppIndexing/AndroidStudio for more information.
     client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
     login.setOnClickListener(this);
-
 
   }
 
@@ -68,73 +68,20 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
-
-    return super.onOptionsItemSelected(item);
-  }
-
-  @Override
-  public void onStart() {
-    super.onStart();
-
-    // ATTENTION: This was auto-generated to implement the App Indexing API.
-    // See https://g.co/AppIndexing/AndroidStudio for more information.
-    client.connect();
-    Action viewAction = Action.newAction(
-            Action.TYPE_VIEW, // TODO: choose an action type.
-            "Main Page", // TODO: Define a title for the content shown.
-            // TODO: If you have web page content that matches this app activity's content,
-            // make sure this auto-generated web page URL is correct.
-            // Otherwise, set the URL to null.
-            Uri.parse("http://host/path"),
-            // TODO: Make sure this auto-generated app deep link URI is correct.
-            Uri.parse("android-app://com.parse.starter/http/host/path")
-    );
-    AppIndex.AppIndexApi.start(client, viewAction);
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-
-    // ATTENTION: This was auto-generated to implement the App Indexing API.
-    // See https://g.co/AppIndexing/AndroidStudio for more information.
-    Action viewAction = Action.newAction(
-            Action.TYPE_VIEW, // TODO: choose an action type.
-            "Main Page", // TODO: Define a title for the content shown.
-            // TODO: If you have web page content that matches this app activity's content,
-            // make sure this auto-generated web page URL is correct.
-            // Otherwise, set the URL to null.
-            Uri.parse("http://host/path"),
-            // TODO: Make sure this auto-generated app deep link URI is correct.
-            Uri.parse("android-app://com.parse.starter/http/host/path")
-    );
-    AppIndex.AppIndexApi.end(client, viewAction);
-    client.disconnect();
-  }
-
-  @Override
   public void onClick(View v) {
-    ParseUser.logInInBackground(userName.getText().toString(),password.getText().toString(), new LogInCallback() {
-      @Override
-      public void done(ParseUser user, com.parse.ParseException e) {
 
-        if (user != null) {
-          startActivity(new Intent(LoginActivity.this, TwitterListActivity.class));
-        } else {
-          Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+      StarterApplication application = (StarterApplication) getApplication();
+
+      application.getTweetService().Login(userName.getText().toString(),password.getText().toString(), new LogInCallback() {
+        @Override
+        public void done(ParseUser user, com.parse.ParseException e) {
+
+            if (user != null) {
+                startActivity(new Intent(LoginActivity.this, TwitterListActivity.class));
+            } else {
+                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }
-      }
     });
-
   }
 }

@@ -14,10 +14,16 @@ import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.starter.dependencies.DaggerTweetComponent;
+import com.parse.starter.dependencies.TweetComponent;
+import com.parse.starter.dependencies.TweetModule;
 import com.parse.starter.domain.Tweet;
+import com.parse.starter.services.ITweetService;
 
 
 public class StarterApplication extends Application {
+
+  private ITweetService tweetService;
 
   @Override
   public void onCreate() {
@@ -36,5 +42,14 @@ public class StarterApplication extends Application {
     // Optionally enable public read access.
     // defaultACL.setPublicReadAccess(true);
     ParseACL.setDefaultACL(defaultACL, true);
+
+    TweetComponent component = DaggerTweetComponent.builder().tweetModule(new TweetModule()).build();
+    tweetService = component.tweetService();
+
+  }
+
+
+  public ITweetService getTweetService() {
+    return tweetService;
   }
 }
