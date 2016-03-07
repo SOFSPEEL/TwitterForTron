@@ -13,6 +13,7 @@ public class TweetServerService implements ITweetServerService {
     @Override
     public List<Tweet> fetchAllTweets(long userId, Date latestDate) {
 
+
         List<Tweet> tweets;
         if (latestDate == null) {
             tweets = Tweet.find(Tweet.class, "user_id=?", Long.toString(userId));

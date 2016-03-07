@@ -42,4 +42,12 @@ public class Tweet extends SugarRecord {
     public boolean getSynced() {
         return synced;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setSynced(boolean synced) {
+        this.synced = synced;
+    }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by steve.fiedelberg on 3/7/16.
  */
-public class TweetCallback {
-    public List<Tweet> Tweets;
+public abstract class TweetCallback extends Object{
+
+    public abstract void onTweetsFetched(List<Tweet> tweets);
 }

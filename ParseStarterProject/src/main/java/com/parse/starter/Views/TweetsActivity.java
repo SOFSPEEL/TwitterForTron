@@ -2,8 +2,10 @@ package com.parse.starter.Views;
 
 import android.content.Context;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +20,6 @@ import com.parse.starter.TweetApplication;
 import com.parse.starter.domain.Tweet;
 import com.parse.starter.services.TweetCallback;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -68,10 +69,27 @@ public class TweetsActivity extends TwitterServiceActivity {
 
         boolean isConnected = networkInfo.isConnected();
 
+        _tweets = tweetService.fetchAllTweets(userId);
 
-        TweetCallback tweetCallback = new TweetCallback();
-        _tweets = tweetSyncService.sync(userId, tweetCallback);
-        _tweets.addAll(tweetCallback.Tweets);
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                tweetSyncService.sync(_tweets, userId, new TweetCallback() {
+                    @Override
+                    public void onTweetsFetched(List<Tweet> tweets) {
+                        _tweets.addAll(tweets);
+                    }
+                });
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                _adapter.notifyDataSetChanged();
+            }
+        }.execute();
+
+
 
         _adapter = new TweetAdapter(this);
         list.setAdapter(_adapter);
@@ -103,8 +121,17 @@ public class TweetsActivity extends TwitterServiceActivity {
 
     private class TweetAdapter extends ArrayAdapter<Tweet> {
         public TweetAdapter(Context context) {
-            super(context, android.R.layout.simple_list_item_1, _tweets);
+            super(context, R.layout.tweet, R.id.text, _tweets);
         }
 
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            View view = super.getView(position, convertView, parent);
+            Tweet tweet = _tweets.get(position);
+            view.findViewById(R.id.synced).setVisibility(tweet.getSynced() ? View.INVISIBLE : View.VISIBLE);
+
+            return view;
+        }
     }
 }

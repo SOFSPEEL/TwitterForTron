@@ -1583,7 +1583,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0c003f;
         public static final int action_mode_bar_stub=0x7f0c003e;
         public static final int action_mode_close_button=0x7f0c0027;
-        public static final int action_settings=0x7f0c0065;
+        public static final int action_settings=0x7f0c0066;
         public static final int activity_chooser_view_content=0x7f0c0028;
         public static final int adjust_height=0x7f0c0016;
         public static final int adjust_width=0x7f0c0017;
@@ -1591,7 +1591,7 @@ containing a value of this type.
         public static final int always=0x7f0c0018;
         public static final int beginning=0x7f0c0013;
         public static final int buttonPanel=0x7f0c0038;
-        public static final int buttonTweet=0x7f0c0063;
+        public static final int buttonTweet=0x7f0c0064;
         public static final int cancel_action=0x7f0c0055;
         public static final int checkbox=0x7f0c003a;
         public static final int chronometer=0x7f0c005b;
@@ -1607,7 +1607,7 @@ containing a value of this type.
         public static final int edit_query=0x7f0c0044;
         public static final int end=0x7f0c0014;
         public static final int end_padder=0x7f0c0060;
-        public static final int enterTweet=0x7f0c0062;
+        public static final int enterTweet=0x7f0c0063;
         public static final int expand_activities_button=0x7f0c0029;
         public static final int expanded_menu=0x7f0c0039;
         public static final int home=0x7f0c0004;
@@ -1618,7 +1618,7 @@ containing a value of this type.
         public static final int info=0x7f0c005f;
         public static final int line1=0x7f0c0059;
         public static final int line3=0x7f0c005d;
-        public static final int list=0x7f0c0064;
+        public static final int list=0x7f0c0065;
         public static final int listMode=0x7f0c0009;
         public static final int list_item=0x7f0c002c;
         public static final int login=0x7f0c0053;
@@ -1656,6 +1656,7 @@ containing a value of this type.
         public static final int src_over=0x7f0c0024;
         public static final int status_bar_latest_event_content=0x7f0c0056;
         public static final int submit_area=0x7f0c004d;
+        public static final int synced=0x7f0c0061;
         public static final int tabMode=0x7f0c000b;
         public static final int text=0x7f0c005e;
         public static final int text2=0x7f0c005c;
@@ -1663,7 +1664,7 @@ containing a value of this type.
         public static final int time=0x7f0c005a;
         public static final int title=0x7f0c002e;
         public static final int title_template=0x7f0c0031;
-        public static final int top=0x7f0c0061;
+        public static final int top=0x7f0c0062;
         public static final int topPanel=0x7f0c0030;
         public static final int up=0x7f0c0008;
         public static final int useLogo=0x7f0c0012;
@@ -1718,7 +1719,8 @@ containing a value of this type.
         public static final int select_dialog_multichoice_material=0x7f040023;
         public static final int select_dialog_singlechoice_material=0x7f040024;
         public static final int support_simple_spinner_dropdown_item=0x7f040025;
-        public static final int tweets=0x7f040026;
+        public static final int tweet=0x7f040026;
+        public static final int tweets=0x7f040027;
     }
     public static final class menu {
         public static final int menu_main=0x7f0d0000;

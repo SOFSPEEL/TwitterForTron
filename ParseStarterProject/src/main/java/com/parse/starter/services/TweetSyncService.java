@@ -21,24 +21,57 @@ public class TweetSyncService implements ITweetSyncService {
     }
 
     @Override
-    public List<Tweet> sync(long userId, TweetCallback tweetCallback) {
-        List<Tweet> tweets = tweetService.fetchAllTweets(userId);
+    public void sync(List<Tweet> tweets, long userId, TweetCallback tweetCallback) {
 
         Date latestDate = tweets.size() > 0 ? tweets.get(0).getDate() : null;
+        new FetchAllTweetsThread(tweetCallback, userId, latestDate, tweets).run();
 
-        tweetCallback.Tweets = tweetServerService.fetchAllTweets(userId, latestDate);
+    }
 
-        List<Tweet> unsyncedTweets = new ArrayList<>();
-        for (Tweet tweet : tweets) {
-            if (!tweet.getSynced()){
-                unsyncedTweets.add(tweet);
+    public class FetchAllTweetsThread implements Runnable{
 
+        private TweetCallback tweetCallback;
+        private long userId;
+        private Date latestDate;
+        private List<Tweet> tweets;
+
+        public FetchAllTweetsThread(TweetCallback tweetCallback, long userId, Date latestDate, List<Tweet> tweets){
+            this.tweetCallback = tweetCallback;
+            this.userId = userId;
+            this.latestDate = latestDate;
+            this.tweets = tweets;
         }
+
+
+        @Override
+        public void run() {
+
+            simulateServerDelay();
+
+            tweetCallback.onTweetsFetched(tweetServerService.fetchAllTweets(userId, latestDate));
+
+            List<Tweet> unsyncedTweets = new ArrayList<>();
+            for (Tweet tweet : tweets) {
+                if (!tweet.getSynced()) {
+                    tweet.setSynced(true);
+                    unsyncedTweets.add(tweet);
+                }
+            }
+
             if (unsyncedTweets.size() > 0) {
                 tweetServerService.save(unsyncedTweets);
+                for (Tweet tweet : unsyncedTweets) {
+                    tweet.save();
+                }
             }
         }
 
-        return tweets;
+        private void simulateServerDelay() {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
