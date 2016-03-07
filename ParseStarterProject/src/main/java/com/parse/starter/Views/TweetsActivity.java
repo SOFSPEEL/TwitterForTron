@@ -16,7 +16,9 @@ import com.parse.starter.services.NavigateService;
 import com.parse.starter.services.ServiceManager;
 import com.parse.starter.TweetApplication;
 import com.parse.starter.domain.Tweet;
+import com.parse.starter.services.TweetCallback;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -66,11 +68,10 @@ public class TweetsActivity extends TwitterServiceActivity {
 
         boolean isConnected = networkInfo.isConnected();
 
-        _tweets = tweetService.fetchAllTweets(userId);
 
-
-
-
+        TweetCallback tweetCallback = new TweetCallback();
+        _tweets = tweetSyncService.sync(userId, tweetCallback);
+        _tweets.addAll(tweetCallback.Tweets);
 
         _adapter = new TweetAdapter(this);
         list.setAdapter(_adapter);
@@ -89,8 +90,9 @@ public class TweetsActivity extends TwitterServiceActivity {
                     final Tweet tweet = new Tweet(userId, message);
 
                     tweetService.save(tweet);
-
+                    enterTweet.setText("");
                     _tweets.add(0, tweet);
+
                     _adapter.notifyDataSetChanged();
 
                 }

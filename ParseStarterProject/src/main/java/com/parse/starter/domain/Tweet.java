@@ -11,6 +11,10 @@ public class Tweet extends SugarRecord {
     String message;
     Date date;
 
+    public Tweet(){
+
+    }
+
     public Tweet(long userId, String message) {
         this.userId = userId;
         this.message = message;
@@ -33,5 +37,9 @@ public class Tweet extends SugarRecord {
     @Override
     public String toString() {
         return message;
+    }
+
+    public boolean getSynced() {
+        return synced;
     }
 }

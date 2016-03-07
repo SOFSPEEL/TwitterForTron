@@ -1,6 +1,7 @@
 package com.parse.starter.services;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 
 import com.parse.starter.R;
 
@@ -21,7 +22,8 @@ public class Login implements ILogin {
     @Override
     public boolean Login(Activity activity, String userName, String password) {
 
-        User user = userName == "tron" && password == "user" ? new User() : null;
+        boolean isValid = userName.equals("Trov") && password.equals("User");
+        User user = isValid ? createUser() : null;
         boolean isLoggedIn = user != null;
         if (isLoggedIn) {
             navigateService.NavigateTo(activity, "Tweets", user);
@@ -30,6 +32,13 @@ public class Login implements ILogin {
         }
         return isLoggedIn;
 
+    }
+
+    @NonNull
+    private User createUser() {
+        User user = new User();
+        user.setId(1);
+        return user;
     }
 
 }

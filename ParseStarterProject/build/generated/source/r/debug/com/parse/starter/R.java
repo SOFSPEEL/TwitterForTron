@@ -1590,7 +1590,6 @@ containing a value of this type.
         public static final int alertTitle=0x7f0c0032;
         public static final int always=0x7f0c0018;
         public static final int beginning=0x7f0c0013;
-        public static final int bottom=0x7f0c0061;
         public static final int buttonPanel=0x7f0c0038;
         public static final int buttonTweet=0x7f0c0063;
         public static final int cancel_action=0x7f0c0055;
@@ -1664,6 +1663,7 @@ containing a value of this type.
         public static final int time=0x7f0c005a;
         public static final int title=0x7f0c002e;
         public static final int title_template=0x7f0c0031;
+        public static final int top=0x7f0c0061;
         public static final int topPanel=0x7f0c0030;
         public static final int up=0x7f0c0008;
         public static final int useLogo=0x7f0c0012;

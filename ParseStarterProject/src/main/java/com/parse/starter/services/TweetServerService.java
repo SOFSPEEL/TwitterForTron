@@ -2,6 +2,7 @@ package com.parse.starter.services;
 
 import com.parse.starter.domain.Tweet;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,14 +11,26 @@ import java.util.List;
 public class TweetServerService implements ITweetServerService {
 
     @Override
-    public List<Tweet> fetchAllTweets(long userId) {
-        return Tweet.find(Tweet.class, "user_id=?", Long.toString(userId));
+    public List<Tweet> fetchAllTweets(long userId, Date latestDate) {
+
+        List<Tweet> tweets;
+        if (latestDate == null) {
+            tweets = Tweet.find(Tweet.class, "user_id=?", Long.toString(userId));
+        } else {
+            tweets = Tweet.find(Tweet.class, "user_id=? AND date>?", userId + "", latestDate.getTime() + "");
+        }
+        return tweets;
     }
 
     @Override
     public boolean save(Tweet tweet) {
         tweet.save();
         return true;
+    }
+
+    @Override
+    public void save(List<Tweet> tweets) {
+        Tweet.saveInTx(tweets);
     }
 }
 

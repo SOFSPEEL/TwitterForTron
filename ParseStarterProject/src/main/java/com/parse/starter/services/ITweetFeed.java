@@ -12,4 +12,5 @@ public interface ITweetFeed {
 
     boolean save(Tweet tweet);
 
+    int getLatestYear(List<Tweet> tweetsFromDb);
 }

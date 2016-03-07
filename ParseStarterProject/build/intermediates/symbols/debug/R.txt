@@ -448,7 +448,6 @@ int id adjust_width 0x7f0c0017
 int id alertTitle 0x7f0c0032
 int id always 0x7f0c0018
 int id beginning 0x7f0c0013
-int id bottom 0x7f0c0061
 int id buttonPanel 0x7f0c0038
 int id buttonTweet 0x7f0c0063
 int id cancel_action 0x7f0c0055
@@ -522,6 +521,7 @@ int id textSpacerNoButtons 0x7f0c0035
 int id time 0x7f0c005a
 int id title 0x7f0c002e
 int id title_template 0x7f0c0031
+int id top 0x7f0c0061
 int id topPanel 0x7f0c0030
 int id up 0x7f0c0008
 int id useLogo 0x7f0c0012

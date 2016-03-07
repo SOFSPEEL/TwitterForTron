@@ -7,10 +7,9 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/bottom"
+        android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
 
@@ -20,8 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="70"
-            android:gravity="center"
-            android:hint="... please tweet something"
+            android:hint="... tweet away"
 
             tools:showIn="@layout/tweets" />
 
@@ -42,7 +40,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/top"
         tools:context=".Views.TweetsActivity" />
 
 </RelativeLayout>

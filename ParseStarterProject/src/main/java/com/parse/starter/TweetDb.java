@@ -11,6 +11,11 @@ import java.util.List;
 public class TweetDb implements ITweetDb {
     @Override
     public List<Tweet> find(long userId) {
-        return null;
+        return Tweet.find(Tweet.class, "user_id=?", userId + "");
+    }
+
+    @Override
+    public void save(Tweet tweet) {
+        Tweet.save(tweet);
     }
 }

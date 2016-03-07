@@ -17,7 +17,7 @@ import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 
-public class TweetServiceTest {
+public class TweetFeedTest {
 
     private final int userId = 1;
 
@@ -38,18 +38,15 @@ public class TweetServiceTest {
 
         replay(mockTweetDb);
 
+
         List<Tweet> tweetsFromDb = feed.fetchAllTweets(userId);
         Assert.assertEquals(numberItems, tweetsFromDb.size());
         int newestYear = oldestYear + numberItems - 1;
-        Assert.assertEquals(newestYear, getLatestYear(tweetsFromDb));
+        Assert.assertEquals(newestYear, feed.getLatestYear(tweetsFromDb));
 
         verify(mockTweetDb);
 
     }
 
-    private int getLatestYear(List<Tweet> tweetsFromDb) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(tweetsFromDb.get(0).getDate());
-        return cal.get(Calendar.YEAR);
-    }
+
 }
