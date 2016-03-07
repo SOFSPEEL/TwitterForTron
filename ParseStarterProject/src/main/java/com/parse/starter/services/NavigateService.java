@@ -10,15 +10,19 @@ import javax.inject.Inject;
 
 public class NavigateService implements INavigateService {
 
-   @Inject
+    public static final String extraUserId = "UserId";
+
+    @Inject
     public NavigateService() {
     }
 
     @Override
-    public void NavigateTo(Activity activity, String path) {
+    public void NavigateTo(Activity activity, String path, User user) {
         switch (path) {
             case "Tweets":
-                activity.startActivity(new Intent(activity, TweetsActivity.class));
+                Intent intent = new Intent(activity, TweetsActivity.class);
+                intent.putExtra(extraUserId, user.getId());
+                activity.startActivity(intent);
         }
     }
 

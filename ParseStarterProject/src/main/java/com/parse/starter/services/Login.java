@@ -3,37 +3,33 @@ package com.parse.starter.services;
 import android.app.Activity;
 
 import com.parse.starter.R;
-import com.parse.starter.domain.User;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 /**
  * Created by steve.fiedelberg on 3/5/16.
  */
-public class LoginService implements ILoginService {
+public class Login implements ILogin {
 
     private INavigateService navigateService;
-    private IUserService userService;
 
-    public LoginService(INavigateService navigateService, IUserService userService) {
+    public Login(INavigateService navigateService) {
 
         this.navigateService = navigateService;
-        this.userService = userService;
     }
 
     @Override
     public boolean Login(Activity activity, String userName, String password) {
 
-        List<User> users = userService.find(userName, password);
-        boolean isLoggedIn = users.size() > 0;
+        User user = userName == "tron" && password == "user" ? new User() : null;
+        boolean isLoggedIn = user != null;
         if (isLoggedIn) {
-            navigateService.NavigateTo(activity, "Tweets");
+            navigateService.NavigateTo(activity, "Tweets", user);
         } else {
             navigateService.NavigateToToast(activity, activity.getString(R.string.invalid_login));
         }
         return isLoggedIn;
 
     }
+
 }

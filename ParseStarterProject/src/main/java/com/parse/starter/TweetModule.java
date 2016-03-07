@@ -5,15 +5,19 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.parse.starter.services.ILoginService;
+import com.parse.starter.services.ILogin;
 import com.parse.starter.services.INavigateService;
-import com.parse.starter.services.ITweetService;
-import com.parse.starter.services.IUserService;
-import com.parse.starter.services.LoginService;
+import com.parse.starter.services.ITweetDb;
+import com.parse.starter.services.ITweetFeed;
+import com.parse.starter.services.ITweetServerService;
+import com.parse.starter.services.ITweetSyncService;
+import com.parse.starter.services.Login;
 import com.parse.starter.services.NavigateService;
 import com.parse.starter.services.ServiceManager;
-import com.parse.starter.services.TweetService;
-import com.parse.starter.services.UserService;
+import com.parse.starter.services.TweetServerService;
+import com.parse.starter.services.TweetFeed;
+import com.parse.starter.services.TweetSyncService;
+import com.parse.starter.services.Users;
 
 import javax.inject.Singleton;
 
@@ -26,25 +30,33 @@ import dagger.Provides;
 @Module
 public class TweetModule {
 
+
     @Provides
     @Singleton
-    ITweetService provideTweetService() {
-        return new TweetService();
+    ITweetFeed provideTweetFeed(ITweetDb tweetDb) {
+        return new TweetFeed(tweetDb);
     }
 
     @Provides
     @Singleton
-    ILoginService provideLoginService(INavigateService navigateService, IUserService userService) {
-        return new LoginService(navigateService, userService);
+    ITweetServerService provideTweetServerService() {
+        return new TweetServerService();
     }
 
     @Provides
     @Singleton
-    IUserService provideUserService() {
-        return new UserService();
+    ILogin provideLoginService(INavigateService navigateService) {
+        return new Login(navigateService);
     }
 
     @Provides
+    @Singleton
+    ITweetDb provideTweetDb() {
+        return new TweetDb();
+    }
+
+
+    @Provides @Singleton
     INavigateService provideNavigateService() {
         return new NavigateService();
     }
@@ -61,6 +73,10 @@ public class TweetModule {
         return new ServiceManager(application);
     }
 
-
+    @Provides
+    @Singleton
+    ITweetSyncService provideTweetSyncService(ITweetServerService tweetServerService, ITweetFeed tweetService) {
+        return new TweetSyncService(tweetServerService, tweetService);
+    }
 }
 

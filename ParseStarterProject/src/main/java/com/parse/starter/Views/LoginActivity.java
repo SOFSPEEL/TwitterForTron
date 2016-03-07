@@ -8,7 +8,6 @@
  */
 package com.parse.starter.Views;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,12 +15,8 @@ import android.widget.EditText;
 
 import com.parse.starter.R;
 import com.parse.starter.TweetApplication;
-import com.parse.starter.TweetComponent;
-import com.parse.starter.domain.User;
-import com.parse.starter.services.ILoginService;
+import com.parse.starter.services.ILogin;
 import com.parse.starter.services.INavigateService;
-import com.parse.starter.services.LoginService;
-import com.parse.starter.services.NavigateService;
 
 import javax.inject.Inject;
 
@@ -40,7 +35,7 @@ public class LoginActivity extends TwitterServiceActivity implements View.OnClic
 
 
 //    @Inject
-//    LoginService loginService;
+//    Login loginService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +52,7 @@ public class LoginActivity extends TwitterServiceActivity implements View.OnClic
     }
 
     @Inject
-    ILoginService loginService;
+    ILogin loginService;
 
     @Inject
     INavigateService navigateService;

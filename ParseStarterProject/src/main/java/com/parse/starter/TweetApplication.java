@@ -12,19 +12,7 @@ import android.app.Application;
 
 import com.orm.SugarContext;
 
-import com.parse.Parse;
-import com.parse.ParseACL;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
-import com.parse.starter.domain.User;
-import com.parse.starter.services.ILoginService;
-import com.parse.starter.services.INavigateService;
-import com.parse.starter.services.ITweetService;
-import com.parse.starter.services.LoginService;
-
 import java.util.List;
-
-import static com.parse.ParseACL.*;
 
 
 public class TweetApplication extends Application {
@@ -43,16 +31,9 @@ public class TweetApplication extends Application {
                 .appModule(new AppModule(this))
                 .tweetModule(new TweetModule()).build();
 
-        SeedUser();
 
     }
 
-    private void SeedUser() {
-        List<User> users = User.find(User.class, "user_name = ? and password = ?", "Trov", "User");
-        boolean isLoggedIn = users.size() > 0;
-        if (!isLoggedIn)
-            User.save(new User("Trov", "User"));
-    }
 
     public TweetComponent getTweetComponent() {
         return component;

@@ -40,26 +40,25 @@
         -->
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"
-
-
-            />
-
-
-
-        <meta-data android:name="DATABASE" android:value="twitter.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.parse.starter.domain" />
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="twitter.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="2" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.parse.starter.domain" />
 
         <activity
             android:name=".Views.TweetsActivity"
             android:label="@string/title_activity_twitter"
-            android:windowSoftInputMode="stateHidden"
-            >
+            android:windowSoftInputMode="stateHidden"></activity>
 
-
-        </activity>
     </application>
 
 </manifest>

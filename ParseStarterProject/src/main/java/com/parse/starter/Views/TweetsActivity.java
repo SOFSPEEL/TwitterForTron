@@ -10,10 +10,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.parse.starter.R;
+import com.parse.starter.services.ITweetFeed;
+import com.parse.starter.services.ITweetSyncService;
+import com.parse.starter.services.NavigateService;
 import com.parse.starter.services.ServiceManager;
 import com.parse.starter.TweetApplication;
 import com.parse.starter.domain.Tweet;
-import com.parse.starter.services.ITweetService;
 
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class TweetsActivity extends TwitterServiceActivity {
     private TweetAdapter _adapter;
 
     @Inject
-    ITweetService tweetService;
+    ITweetFeed tweetService;
 
     @Inject
     ServiceManager serviceManager;
@@ -45,10 +47,18 @@ public class TweetsActivity extends TwitterServiceActivity {
     @Inject
     NetworkInfo networkInfo;
 
+
+    @Inject
+    ITweetSyncService tweetSyncService;
+
+    private long userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tweets);
+
+        userId = getIntent().getLongExtra(NavigateService.extraUserId, -1);
 
         ((TweetApplication) getApplication()).getTweetComponent().inject(this);
 
@@ -56,9 +66,11 @@ public class TweetsActivity extends TwitterServiceActivity {
 
         boolean isConnected = networkInfo.isConnected();
 
+        _tweets = tweetService.fetchAllTweets(userId);
 
 
-        _tweets = tweetService.fetchAllTweets();
+
+
 
         _adapter = new TweetAdapter(this);
         list.setAdapter(_adapter);
@@ -74,13 +86,12 @@ public class TweetsActivity extends TwitterServiceActivity {
                 String message = enterTweet.getText().toString();
                 if (!message.isEmpty()) {
 
-                    final Tweet tweet = new Tweet(message);
+                    final Tweet tweet = new Tweet(userId, message);
 
                     tweetService.save(tweet);
 
                     _tweets.add(0, tweet);
                     _adapter.notifyDataSetChanged();
-
 
                 }
             }
