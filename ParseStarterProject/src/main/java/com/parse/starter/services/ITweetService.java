@@ -1,18 +1,15 @@
 package com.parse.starter.services;
 
-import com.parse.FindCallback;
-import com.parse.LogInCallback;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
 import com.parse.starter.domain.Tweet;
+import com.parse.starter.domain.User;
+
+import java.util.List;
 
 /**
  * Created by steve.fiedelberg on 3/4/16.
  */
 public interface ITweetService {
-    void fetchAllTweets(FindCallback<ParseObject> findCallback);
+    List<Tweet> fetchAllTweets();
 
-    void Add(Tweet tweet, SaveCallback saveCallback);
-
-    void Login(String userName, String password, LogInCallback logInCallback);
+    boolean save(Tweet tweet);
 }

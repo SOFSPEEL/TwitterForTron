@@ -1,22 +1,18 @@
 package com.parse.starter.domain;
 
-import com.parse.ParseClassName;
-import com.parse.ParseObject;
+import com.orm.SugarRecord;
 
-@ParseClassName("Tweet")
-public class Tweet extends ParseObject {
+public class Tweet extends SugarRecord {
 
-    public String getMessage() {
-        return getString("message");
-    }
+    String message;
 
-    public void setMessage(String value) {
-        put("message", value);
+    public Tweet(){}
+    public Tweet(String message){
+        this.message = message;
     }
 
     @Override
     public String toString() {
-        return getMessage();
-
+        return message;
     }
 }
