@@ -1,8 +1,15 @@
 package com.parse.starter.services;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
+
+import com.parse.starter.domain.User;
 
 import junit.framework.TestCase;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.easymock.EasyMock.createMock;
 
@@ -18,5 +25,15 @@ public class TestBase {
         mockNav = createMock(NavigateService.class);
         mockUser = createMock(UserService.class);
         mockActivity = createMock(Activity.class);
+    }
+
+    @NonNull
+    protected List<User> CreateSingleUser() {
+        return Arrays.asList(new User());
+    }
+
+    @NonNull
+    protected List<User> CreateNoUser() {
+        return new ArrayList<>();
     }
 }

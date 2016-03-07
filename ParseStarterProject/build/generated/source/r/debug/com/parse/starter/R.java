@@ -1779,10 +1779,11 @@ containing a value of this type.
         public static final int common_google_play_services_updating_title=0x7f060029;
         public static final int common_open_on_phone=0x7f06002a;
         public static final int hello_world=0x7f060033;
-        public static final int parse_app_id=0x7f060034;
-        public static final int parse_client_key=0x7f060035;
-        public static final int status_bar_notification_info_overflow=0x7f060036;
-        public static final int title_activity_twitter=0x7f060037;
+        public static final int invalid_login=0x7f060034;
+        public static final int parse_app_id=0x7f060035;
+        public static final int parse_client_key=0x7f060036;
+        public static final int status_bar_notification_info_overflow=0x7f060037;
+        public static final int title_activity_twitter=0x7f060038;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f080073;

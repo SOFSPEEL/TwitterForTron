@@ -16,4 +16,5 @@
     <string name="parse_app_id">cGHTQ7HCrJqoinuU619Z3s2eaJ7F065NeQDC8Nce</string>
     <string name="parse_client_key">VGkah4EJD4NhtX5lCgrpMlvdZWG4PJoaxnPRCq73</string>
     <string name="title_activity_twitter">TwitterActivity</string>
+    <string name="invalid_login">Invalid Login</string>
 </resources>

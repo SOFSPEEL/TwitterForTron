@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-public class NetworkChangeReceiver extends BroadcastReceiver implements MyListener {
+public class NetworkChangeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent intent) {

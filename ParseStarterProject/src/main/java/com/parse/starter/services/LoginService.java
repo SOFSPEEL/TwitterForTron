@@ -2,6 +2,7 @@ package com.parse.starter.services;
 
 import android.app.Activity;
 
+import com.parse.starter.R;
 import com.parse.starter.domain.User;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class LoginService implements ILoginService {
     private INavigateService navigateService;
     private IUserService userService;
 
-    public LoginService(INavigateService navigateService, IUserService userService)   {
+    public LoginService(INavigateService navigateService, IUserService userService) {
 
         this.navigateService = navigateService;
         this.userService = userService;
@@ -27,7 +28,11 @@ public class LoginService implements ILoginService {
 
         List<User> users = userService.find(userName, password);
         boolean isLoggedIn = users.size() > 0;
-        if (isLoggedIn) navigateService.NavigateTo(activity, "Tweets");
+        if (isLoggedIn) {
+            navigateService.NavigateTo(activity, "Tweets");
+        } else {
+            navigateService.NavigateToToast(activity, activity.getString(R.string.invalid_login));
+        }
         return isLoggedIn;
 
     }

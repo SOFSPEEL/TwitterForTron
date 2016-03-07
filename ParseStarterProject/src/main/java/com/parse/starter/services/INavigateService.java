@@ -7,5 +7,7 @@ import android.app.Activity;
  */
 public interface INavigateService {
     void NavigateTo(Activity activity, String path);
+
+    void NavigateToToast(Activity activity, String toast);
 }
 
