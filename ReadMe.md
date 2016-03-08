@@ -31,3 +31,8 @@ I did not spend too much time on following:
 - making the UI look really nice (i.e. just used stock android controls)
 - because of time constraints did not put in stuff like SwipeRefresh (i.e. pull down refresh)
 - Normally I would put all strings would be in strings.xml for localization efforts
+- The targeted and minimu Android versions I just used the defaults provided when I
+newly created the project.
+
+Note that I have put the apk in git in case you have problems building, needless to say
+normally I would not save generated files to source control
