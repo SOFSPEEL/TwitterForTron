@@ -51,8 +51,7 @@ public class TweetsActivity extends TwitterServiceActivity {
     @Inject
     ServiceManager serviceManager;
 
-    @Inject
-    NetworkInfo networkInfo;
+
 
 
     @Inject
@@ -126,7 +125,11 @@ public class TweetsActivity extends TwitterServiceActivity {
 
     private void syncInBackground() {
 
-        if (networkInfo.isConnected()) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
 
             new AsyncTask<Void, Void, Void>() {
                 @Override

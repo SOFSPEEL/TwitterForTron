@@ -1,6 +1,5 @@
 package com.parse.starter.services;
 
-import com.parse.starter.TweetDb;
 import com.parse.starter.domain.Tweet;
 
 import junit.framework.Assert;
@@ -8,7 +7,6 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 

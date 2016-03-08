@@ -14,10 +14,10 @@ import com.parse.starter.services.ITweetSyncService;
 import com.parse.starter.services.Login;
 import com.parse.starter.services.NavigateService;
 import com.parse.starter.services.ServiceManager;
+import com.parse.starter.services.TweetDb;
 import com.parse.starter.services.TweetServerService;
 import com.parse.starter.services.TweetFeed;
 import com.parse.starter.services.TweetSyncService;
-import com.parse.starter.services.Users;
 
 import javax.inject.Singleton;
 
@@ -61,12 +61,7 @@ public class TweetModule {
         return new NavigateService();
     }
 
-    @Provides
-    public NetworkInfo provideNetworkInfo(Application application) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        return connectivityManager.getActiveNetworkInfo();
-    }
 
     @Provides
     ServiceManager provideServiceManager(Application application) {
