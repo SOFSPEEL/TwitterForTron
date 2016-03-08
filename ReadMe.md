@@ -10,6 +10,10 @@ The app functions as follows:
     - If a network connection is established while on this screen then tweets will be synced
     - Remember there is a five second delay so tweets sync five seconds after network connection is
     established.
+    -  Note that I would not necessarily synchronize after every tweet in a real app scenario
+       As a minimum I would delay sending the tweets for a configurable amount of time and/or
+       until several have accumulated. For simplicity sake in this demo, i re-sync immediately.
+
            
 
 Used the following libaries:

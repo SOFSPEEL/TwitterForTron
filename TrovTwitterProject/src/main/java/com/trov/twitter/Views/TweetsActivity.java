@@ -1,5 +1,6 @@
 package com.trov.twitter.Views;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +32,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class TweetsActivity extends TwitterServiceActivity {
+public class TweetsActivity extends Activity {
 
     @Bind(R.id.list)
     ListView list;
@@ -53,7 +54,6 @@ public class TweetsActivity extends TwitterServiceActivity {
 
     @Inject
     INavigate navigate;
-
 
 
     @Inject
@@ -134,6 +134,11 @@ public class TweetsActivity extends TwitterServiceActivity {
             _tweets.add(0, tweet);
 
             _adapter.notifyDataSetChanged();
+
+            // Note that I would not necesarily syncronize after every tweet in a reallife scenario
+            // As a minimum I would delay sending the tweets for a configurable amount of time and/or
+            // until several have accumulated
+            syncInBackground();
 
         }
     }
