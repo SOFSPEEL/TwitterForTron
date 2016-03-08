@@ -1,6 +1,10 @@
 package com.parse.starter.Views;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -55,6 +59,7 @@ public class TweetsActivity extends TwitterServiceActivity {
     ITweetSyncService tweetSyncService;
 
     private long userId;
+    private ConnectivityChangeReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,28 +72,7 @@ public class TweetsActivity extends TwitterServiceActivity {
 
         ButterKnife.bind(this, this);
 
-        boolean isConnected = networkInfo.isConnected();
-
         _tweets = tweetService.fetchAllTweets(userId);
-
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                tweetSyncService.sync(_tweets, userId, new TweetCallback() {
-                    @Override
-                    public void onTweetsFetched(List<Tweet> tweets) {
-                        _tweets.addAll(tweets);
-                    }
-                });
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                _adapter.notifyDataSetChanged();
-            }
-        }.execute();
-
 
 
         _adapter = new TweetAdapter(this);
@@ -115,8 +99,55 @@ public class TweetsActivity extends TwitterServiceActivity {
 
                 }
             }
-
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        syncInBackground();
+
+        receiver = new ConnectivityChangeReceiver();
+        registerReceiver(
+                receiver,
+                new IntentFilter(
+                        ConnectivityManager.CONNECTIVITY_ACTION));
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (receiver != null){
+            unregisterReceiver(receiver);
+        }
+    }
+
+    private void syncInBackground() {
+
+        if (networkInfo.isConnected()) {
+
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+
+                    tweetSyncService.sync(_tweets, userId, new TweetCallback() {
+                        @Override
+                        public void onTweetsFetched(List<Tweet> tweets) {
+                            _tweets.addAll(tweets);
+                        }
+                    });
+
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    _adapter.notifyDataSetChanged();
+                }
+            }.execute();
+        }
     }
 
     private class TweetAdapter extends ArrayAdapter<Tweet> {
@@ -132,6 +163,13 @@ public class TweetsActivity extends TwitterServiceActivity {
             view.findViewById(R.id.synced).setVisibility(tweet.getSynced() ? View.INVISIBLE : View.VISIBLE);
 
             return view;
+        }
+    }
+
+    private class ConnectivityChangeReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            syncInBackground();
         }
     }
 }

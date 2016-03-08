@@ -45,7 +45,7 @@ public class LoginServiceTest extends TestBase {
         replay(mockNav, mockActivity);
 
         //run
-        new Login(mockNav).Login(mockActivity, "tron", "user");
+        new Login(mockNav).Login(mockActivity, "Trov", "User");
 
         //verify
         verify(mockNav, mockActivity);
@@ -63,7 +63,7 @@ public class LoginServiceTest extends TestBase {
         replay(mockNav, mockActivity);
 
         //run
-        new Login(mockNav).Login(mockActivity, "tron1", "user");
+        new Login(mockNav).Login(mockActivity, "Tron1", "User");
 
         //verify
         verify(mockNav, mockActivity);

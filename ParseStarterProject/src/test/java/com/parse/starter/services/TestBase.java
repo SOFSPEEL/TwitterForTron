@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.createNiceMock;
 
 /**
  * Created by steve.fiedelberg on 3/6/16.
@@ -18,7 +19,7 @@ public class TestBase {
 
     protected void createMocks() {
         mockNav = createMock(NavigateService.class);
-        mockActivity = createMock(Activity.class);
+        mockActivity = createNiceMock(Activity.class);
     }
 
     @NonNull
