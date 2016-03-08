@@ -16,7 +16,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.parse.starter.R;
+import com.parse.starter.domain.User;
 import com.parse.starter.services.Feed;
+import com.parse.starter.services.INavigate;
 import com.parse.starter.services.ITweetSyncService;
 import com.parse.starter.services.Navigate;
 import com.parse.starter.services.ServiceManager;
@@ -41,6 +43,9 @@ public class TweetsActivity extends TwitterServiceActivity {
     @Bind(R.id.enterTweet)
     EditText enterTweet;
 
+    @Bind(R.id.logout)
+    Button buttonLogout;
+
     List<Tweet> _tweets;
     private TweetAdapter _adapter;
 
@@ -48,9 +53,10 @@ public class TweetsActivity extends TwitterServiceActivity {
     Feed tweetService;
 
     @Inject
+    INavigate navigate;
+
+    @Inject
     ServiceManager serviceManager;
-
-
 
 
     @Inject
@@ -72,7 +78,6 @@ public class TweetsActivity extends TwitterServiceActivity {
 
         _tweets = tweetService.fetchAllTweets(userId);
 
-
         _adapter = new TweetAdapter(this);
         list.setAdapter(_adapter);
 
@@ -81,23 +86,21 @@ public class TweetsActivity extends TwitterServiceActivity {
             public void onClick(View v) {
                 Tweet();
             }
-
-            private void Tweet() {
-
-                String message = enterTweet.getText().toString();
-                if (!message.isEmpty()) {
-
-                    final Tweet tweet = new Tweet(userId, message);
-
-                    tweetService.save(tweet);
-                    enterTweet.setText("");
-                    _tweets.add(0, tweet);
-
-                    _adapter.notifyDataSetChanged();
-
-                }
+        });
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout();
             }
         });
+    }
+
+    private void Logout() {
+        User user = User.findById(User.class, userId);
+        user.setLoggedIn(false);
+        user.save();
+        finish();
+        navigate.To(this, "Logout", null);
     }
 
     @Override
@@ -117,8 +120,24 @@ public class TweetsActivity extends TwitterServiceActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (receiver != null){
+        if (receiver != null) {
             unregisterReceiver(receiver);
+        }
+    }
+
+    private void Tweet() {
+
+        String message = enterTweet.getText().toString();
+        if (!message.isEmpty()) {
+
+            final Tweet tweet = new Tweet(userId, message);
+
+            tweetService.save(tweet);
+            enterTweet.setText("");
+            _tweets.add(0, tweet);
+
+            _adapter.notifyDataSetChanged();
+
         }
     }
 

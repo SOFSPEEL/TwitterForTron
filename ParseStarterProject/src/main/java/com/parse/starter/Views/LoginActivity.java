@@ -33,9 +33,11 @@ public class LoginActivity extends TwitterServiceActivity implements View.OnClic
     @Bind(R.id.login)
     Button login;
 
+    @Inject
+    ILogin loginService;
 
-//    @Inject
-//    Login loginService;
+    @Inject
+    INavigate navigateService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,21 +48,17 @@ public class LoginActivity extends TwitterServiceActivity implements View.OnClic
 
         ButterKnife.bind(this, this);
 
-
         login.setOnClickListener(this);
+
+        loginService.LoginAutomatically(this);
 
     }
 
-    @Inject
-    ILogin loginService;
-
-    @Inject
-    INavigate navigateService;
 
     @Override
     public void onClick(View v) {
 
-        loginService.Login(this, userName.getText().toString(), password.getText().toString());
+        loginService.LoginManually(this, userName.getText().toString(), password.getText().toString());
 
     }
 }

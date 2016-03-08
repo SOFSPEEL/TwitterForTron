@@ -1541,13 +1541,13 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0c003d;
         public static final int action_mode_bar_stub=0x7f0c003c;
         public static final int action_mode_close_button=0x7f0c0025;
-        public static final int action_settings=0x7f0c0064;
+        public static final int action_settings=0x7f0c0065;
         public static final int activity_chooser_view_content=0x7f0c0026;
         public static final int alertTitle=0x7f0c0030;
         public static final int always=0x7f0c0016;
         public static final int beginning=0x7f0c0013;
         public static final int buttonPanel=0x7f0c0036;
-        public static final int buttonTweet=0x7f0c0062;
+        public static final int buttonTweet=0x7f0c0063;
         public static final int cancel_action=0x7f0c0053;
         public static final int checkbox=0x7f0c0038;
         public static final int chronometer=0x7f0c0059;
@@ -1563,7 +1563,7 @@ containing a value of this type.
         public static final int edit_query=0x7f0c0042;
         public static final int end=0x7f0c0014;
         public static final int end_padder=0x7f0c005e;
-        public static final int enterTweet=0x7f0c0061;
+        public static final int enterTweet=0x7f0c0062;
         public static final int expand_activities_button=0x7f0c0027;
         public static final int expanded_menu=0x7f0c0037;
         public static final int home=0x7f0c0004;
@@ -1574,10 +1574,11 @@ containing a value of this type.
         public static final int info=0x7f0c005d;
         public static final int line1=0x7f0c0057;
         public static final int line3=0x7f0c005b;
-        public static final int list=0x7f0c0063;
+        public static final int list=0x7f0c0064;
         public static final int listMode=0x7f0c0009;
         public static final int list_item=0x7f0c002a;
         public static final int login=0x7f0c0051;
+        public static final int logout=0x7f0c0060;
         public static final int media_actions=0x7f0c0055;
         public static final int middle=0x7f0c0015;
         public static final int multiply=0x7f0c001e;
@@ -1620,7 +1621,7 @@ containing a value of this type.
         public static final int time=0x7f0c0058;
         public static final int title=0x7f0c002c;
         public static final int title_template=0x7f0c002f;
-        public static final int top=0x7f0c0060;
+        public static final int top=0x7f0c0061;
         public static final int topPanel=0x7f0c002e;
         public static final int up=0x7f0c0008;
         public static final int useLogo=0x7f0c0012;

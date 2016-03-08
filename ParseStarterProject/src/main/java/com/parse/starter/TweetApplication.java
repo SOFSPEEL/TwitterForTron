@@ -9,8 +9,10 @@
 package com.parse.starter;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 
 import com.orm.SugarContext;
+import com.parse.starter.domain.User;
 
 import java.util.List;
 
@@ -31,11 +33,26 @@ public class TweetApplication extends Application {
                 .appModule(new AppModule(this))
                 .tweetModule(new TweetModule()).build();
 
-
+        seedWithUser();
     }
 
 
     public TweetComponent getTweetComponent() {
         return component;
     }
+
+    @NonNull
+    private User seedWithUser() {
+
+        User user = User.findById(User.class, 1L);
+        if (user == null) {
+            user = new User();
+            user.setName("Trov");
+            user.setPassword("User");
+            user.setId(1L);
+            user.save();
+        }
+        return user;
+    }
+
 }

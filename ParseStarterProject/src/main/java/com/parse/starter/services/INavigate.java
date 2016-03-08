@@ -2,12 +2,14 @@ package com.parse.starter.services;
 
 import android.app.Activity;
 
+import com.parse.starter.domain.User;
+
 /**
  * Created by steve.fiedelberg on 3/5/16.
  */
 public interface INavigate {
-    void NavigateTo(Activity activity, String path, User user);
+    void To(Activity activity, String path, User user);
 
-    void NavigateToToast(Activity activity, String toast);
+    void ToToast(Activity activity, String toast);
 }
 

@@ -1,9 +1,11 @@
 package com.parse.starter.services;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
 
 import com.parse.starter.R;
+import com.parse.starter.domain.User;
+
+import java.util.List;
 
 /**
  * Created by steve.fiedelberg on 3/5/16.
@@ -18,25 +20,36 @@ public class Login implements ILogin {
     }
 
     @Override
-    public boolean Login(Activity activity, String userName, String password) {
+    public boolean LoginManually(Activity activity, String userName, String password) {
 
-        boolean isValid = userName.equals("Trov") && password.equals("User");
-        User user = isValid ? createUser() : null;
-        boolean isLoggedIn = user != null;
-        if (isLoggedIn) {
-            navigateService.NavigateTo(activity, "Tweets", user);
+        List<User> users = User.find(User.class, "name=? AND password=?", userName, password);
+
+        boolean userExists = users.size() > 0;
+
+        if (userExists) {
+            User user = users.get(0);
+            user.setLoggedIn(true);
+            user.save();
+            navigateService.To(activity, "Tweets", user);
         } else {
-            navigateService.NavigateToToast(activity, activity.getString(R.string.invalid_login));
+            navigateService.ToToast(activity, activity.getString(R.string.invalid_login));
         }
-        return isLoggedIn;
 
+
+        return userExists;
     }
 
-    @NonNull
-    private User createUser() {
-        User user = new User();
-        user.setId(1);
-        return user;
-    }
+    @Override
+    public void LoginAutomatically(Activity activity) {
 
+        List<User> users = User.find(User.class, "logged_in=?", 1 + "");
+        boolean userExists = users.size() > 0;
+        if (userExists) {
+            User user = users.get(0);
+            navigateService.To(activity, "Tweets", user);
+        }
+    }
 }
+
+
+
