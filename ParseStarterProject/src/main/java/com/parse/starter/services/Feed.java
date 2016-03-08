@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by steve.fiedelberg on 3/4/16.
  */
-public interface ITweetFeed {
+public interface Feed {
     List<Tweet> fetchAllTweets(long userId);
 
     boolean save(Tweet tweet);

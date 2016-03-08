@@ -16,13 +16,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.parse.starter.R;
-import com.parse.starter.services.ITweetFeed;
+import com.parse.starter.services.Feed;
 import com.parse.starter.services.ITweetSyncService;
-import com.parse.starter.services.NavigateService;
+import com.parse.starter.services.Navigate;
 import com.parse.starter.services.ServiceManager;
 import com.parse.starter.TweetApplication;
 import com.parse.starter.domain.Tweet;
-import com.parse.starter.services.TweetCallback;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class TweetsActivity extends TwitterServiceActivity {
     private TweetAdapter _adapter;
 
     @Inject
-    ITweetFeed tweetService;
+    Feed tweetService;
 
     @Inject
     ServiceManager serviceManager;
@@ -65,7 +64,7 @@ public class TweetsActivity extends TwitterServiceActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tweets);
 
-        userId = getIntent().getLongExtra(NavigateService.extraUserId, -1);
+        userId = getIntent().getLongExtra(Navigate.extraUserId, -1);
 
         ((TweetApplication) getApplication()).getTweetComponent().inject(this);
 
@@ -135,12 +134,7 @@ public class TweetsActivity extends TwitterServiceActivity {
                 @Override
                 protected Void doInBackground(Void... params) {
 
-                    tweetSyncService.sync(_tweets, userId, new TweetCallback() {
-                        @Override
-                        public void onTweetsFetched(List<Tweet> tweets) {
-                            _tweets.addAll(tweets);
-                        }
-                    });
+                    _tweets.addAll(tweetSyncService.sync(_tweets, userId));
 
                     return null;
                 }

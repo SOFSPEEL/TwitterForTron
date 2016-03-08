@@ -1,18 +1,15 @@
 package com.parse.starter;
 
 import android.app.Application;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
 import com.parse.starter.services.ILogin;
-import com.parse.starter.services.INavigateService;
+import com.parse.starter.services.INavigate;
 import com.parse.starter.services.ITweetDb;
-import com.parse.starter.services.ITweetFeed;
+import com.parse.starter.services.Feed;
 import com.parse.starter.services.ITweetServerService;
 import com.parse.starter.services.ITweetSyncService;
 import com.parse.starter.services.Login;
-import com.parse.starter.services.NavigateService;
+import com.parse.starter.services.Navigate;
 import com.parse.starter.services.ServiceManager;
 import com.parse.starter.services.TweetDb;
 import com.parse.starter.services.TweetServerService;
@@ -33,7 +30,7 @@ public class TweetModule {
 
     @Provides
     @Singleton
-    ITweetFeed provideTweetFeed(ITweetDb tweetDb) {
+    Feed provideTweetFeed(ITweetDb tweetDb) {
         return new TweetFeed(tweetDb);
     }
 
@@ -45,7 +42,7 @@ public class TweetModule {
 
     @Provides
     @Singleton
-    ILogin provideLoginService(INavigateService navigateService) {
+    ILogin provideLoginService(INavigate navigateService) {
         return new Login(navigateService);
     }
 
@@ -57,8 +54,8 @@ public class TweetModule {
 
 
     @Provides @Singleton
-    INavigateService provideNavigateService() {
-        return new NavigateService();
+    INavigate provideNavigateService() {
+        return new Navigate();
     }
 
 
@@ -70,7 +67,7 @@ public class TweetModule {
 
     @Provides
     @Singleton
-    ITweetSyncService provideTweetSyncService(ITweetServerService tweetServerService, ITweetFeed tweetService) {
+    ITweetSyncService provideTweetSyncService(ITweetServerService tweetServerService, Feed tweetService) {
         return new TweetSyncService(tweetServerService, tweetService);
     }
 }

@@ -8,12 +8,12 @@ import com.parse.starter.Views.TweetsActivity;
 
 import javax.inject.Inject;
 
-public class NavigateService implements INavigateService {
+public class Navigate implements INavigate {
 
     public static final String extraUserId = "UserId";
 
     @Inject
-    public NavigateService() {
+    public Navigate() {
     }
 
     @Override

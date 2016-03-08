@@ -5,16 +5,14 @@ import android.support.annotation.NonNull;
 
 import com.parse.starter.R;
 
-import java.util.List;
-
 /**
  * Created by steve.fiedelberg on 3/5/16.
  */
 public class Login implements ILogin {
 
-    private INavigateService navigateService;
+    private INavigate navigateService;
 
-    public Login(INavigateService navigateService) {
+    public Login(INavigate navigateService) {
 
         this.navigateService = navigateService;
     }

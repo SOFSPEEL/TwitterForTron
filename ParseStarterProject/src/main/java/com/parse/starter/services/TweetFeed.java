@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by steve.fiedelberg on 3/4/16.
  */
-public class TweetFeed implements ITweetFeed {
+public class TweetFeed implements Feed {
 
     private ITweetDb tweetDb;
 

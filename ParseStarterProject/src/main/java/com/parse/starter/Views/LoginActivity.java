@@ -16,7 +16,7 @@ import android.widget.EditText;
 import com.parse.starter.R;
 import com.parse.starter.TweetApplication;
 import com.parse.starter.services.ILogin;
-import com.parse.starter.services.INavigateService;
+import com.parse.starter.services.INavigate;
 
 import javax.inject.Inject;
 
@@ -55,7 +55,7 @@ public class LoginActivity extends TwitterServiceActivity implements View.OnClic
     ILogin loginService;
 
     @Inject
-    INavigateService navigateService;
+    INavigate navigateService;
 
     @Override
     public void onClick(View v) {

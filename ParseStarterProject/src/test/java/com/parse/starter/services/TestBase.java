@@ -14,11 +14,11 @@ import static org.easymock.EasyMock.createNiceMock;
  * Created by steve.fiedelberg on 3/6/16.
  */
 public class TestBase {
-    protected NavigateService mockNav;
+    protected Navigate mockNav;
     protected Activity mockActivity;
 
     protected void createMocks() {
-        mockNav = createMock(NavigateService.class);
+        mockNav = createMock(Navigate.class);
         mockActivity = createNiceMock(Activity.class);
     }
 
