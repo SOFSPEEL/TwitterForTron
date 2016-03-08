@@ -17,11 +17,10 @@ import android.widget.ListView;
 
 import com.parse.twitter.R;
 import com.trov.twitter.domain.User;
-import com.trov.twitter.tests.Feed;
-import com.trov.twitter.tests.INavigate;
-import com.trov.twitter.tests.ITweetSyncService;
-import com.trov.twitter.tests.Navigate;
-import com.trov.twitter.tests.ServiceManager;
+import com.trov.twitter.domain.Feed;
+import com.trov.twitter.domain.INavigate;
+import com.trov.twitter.domain.ITweetSyncService;
+import com.trov.twitter.domain.Navigate;
 import com.trov.twitter.TweetApplication;
 import com.trov.twitter.domain.Tweet;
 
@@ -55,8 +54,6 @@ public class TweetsActivity extends TwitterServiceActivity {
     @Inject
     INavigate navigate;
 
-    @Inject
-    ServiceManager serviceManager;
 
 
     @Inject

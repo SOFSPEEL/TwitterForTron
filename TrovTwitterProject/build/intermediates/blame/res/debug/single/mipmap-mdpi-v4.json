@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/steve.fiedelberg/Desktop/TwitterForTron/TrovTwitterProject/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
+        "source": "/Users/steve.fiedelberg/Desktop/TwitterForTron/TrovTwitterProject/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/steve.fiedelberg/Downloads/TwitterForTron/TrovTwitterProject/build/intermediates/res/merged/debug/mipmap-mdpi-v4/ic_launcher.png",
         "source": "/Users/steve.fiedelberg/Downloads/TwitterForTron/TrovTwitterProject/src/main/res/mipmap-mdpi/ic_launcher.png"
     }

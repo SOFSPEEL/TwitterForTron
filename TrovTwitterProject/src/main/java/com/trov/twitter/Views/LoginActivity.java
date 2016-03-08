@@ -16,8 +16,8 @@ import android.widget.EditText;
 
 import com.parse.twitter.R;
 import com.trov.twitter.TweetApplication;
-import com.trov.twitter.tests.ILogin;
-import com.trov.twitter.tests.INavigate;
+import com.trov.twitter.domain.ILogin;
+import com.trov.twitter.domain.INavigate;
 
 import javax.inject.Inject;
 

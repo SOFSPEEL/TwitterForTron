@@ -2,6 +2,9 @@ package com.trov.twitter.tests;
 
 import android.app.Activity;
 
+import com.trov.twitter.domain.Navigate;
+import com.trov.twitter.fakeserver.UserServerService;
+
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.createNiceMock;
 

@@ -3,6 +3,7 @@ package com.trov.twitter.tests;
 import android.app.Activity;
 
 import com.parse.twitter.R;
+import com.trov.twitter.domain.Login;
 import com.trov.twitter.domain.User;
 
 import org.junit.Before;

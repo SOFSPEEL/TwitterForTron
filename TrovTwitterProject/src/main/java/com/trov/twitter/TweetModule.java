@@ -2,21 +2,20 @@ package com.trov.twitter;
 
 import android.app.Application;
 
-import com.trov.twitter.tests.ILogin;
-import com.trov.twitter.tests.INavigate;
-import com.trov.twitter.tests.ITweetDb;
-import com.trov.twitter.tests.Feed;
-import com.trov.twitter.tests.ITweetServerService;
-import com.trov.twitter.tests.ITweetSyncService;
-import com.trov.twitter.tests.IUserServerService;
-import com.trov.twitter.tests.Login;
-import com.trov.twitter.tests.Navigate;
-import com.trov.twitter.tests.ServiceManager;
-import com.trov.twitter.tests.TweetDb;
-import com.trov.twitter.tests.TweetServerService;
-import com.trov.twitter.tests.TweetFeed;
-import com.trov.twitter.tests.TweetSyncService;
-import com.trov.twitter.tests.UserServerService;
+import com.trov.twitter.domain.ILogin;
+import com.trov.twitter.domain.INavigate;
+import com.trov.twitter.domain.ITweetDb;
+import com.trov.twitter.domain.Feed;
+import com.trov.twitter.fakeserver.ITweetServerService;
+import com.trov.twitter.domain.ITweetSyncService;
+import com.trov.twitter.fakeserver.IUserServerService;
+import com.trov.twitter.domain.Login;
+import com.trov.twitter.domain.Navigate;
+import com.trov.twitter.domain.TweetDb;
+import com.trov.twitter.fakeserver.TweetServerService;
+import com.trov.twitter.domain.TweetFeed;
+import com.trov.twitter.domain.TweetSyncService;
+import com.trov.twitter.fakeserver.UserServerService;
 
 import javax.inject.Singleton;
 
@@ -69,14 +68,9 @@ public class TweetModule {
 
 
     @Provides
-    ServiceManager provideServiceManager(Application application) {
-        return new ServiceManager(application);
-    }
-
-    @Provides
     @Singleton
     ITweetSyncService provideTweetSyncService(ITweetServerService tweetServerService, Feed tweetService) {
-        return new TweetSyncService(tweetServerService, tweetService);
+        return new TweetSyncService(tweetServerService);
     }
 }
 

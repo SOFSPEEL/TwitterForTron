@@ -1,6 +1,8 @@
 package com.trov.twitter.tests;
 
 import com.trov.twitter.domain.Tweet;
+import com.trov.twitter.domain.TweetDb;
+import com.trov.twitter.domain.TweetFeed;
 
 import junit.framework.Assert;
 
