@@ -13,7 +13,8 @@ The app functions as follows:
     -  Note that I would not necessarily synchronize after every tweet in a real app scenario
        As a minimum I would delay sending the tweets for a configurable amount of time and/or
        until several have accumulated. For simplicity sake in this demo, i re-sync immediately.
-
+    - Note too that I stored a password in cleartext, for the sole purpose of simulating a server with user accounts. Normally 
+      ofcourse I would not store a password as cleartext, and instead would use AccountManager to store the password or not store the         password at all and rely on a token from an authentication server, etc.
            
 
 Used the following libaries:
